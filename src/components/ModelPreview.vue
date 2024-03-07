@@ -1,6 +1,6 @@
 <script>
     export default {
-        props: ["id", "model"],
+        props: ["id", "model", "mobile"],
         data() {
             return {
 
@@ -20,11 +20,34 @@
 </script>
 
 <template>
-    <div id="container" @click="previewClicked">
+    <div v-if="mobile" id="mobile-container" @click="previewClicked">
+        <h1>{{ model.name }}</h1>
+        <img :src="model.picture" alt="picture_not_found">
+    </div>
+
+    <div v-else id="container" @click="previewClicked">
         <h1>{{ model.name }}</h1>
         <img :src="model.picture" alt="picture_not_found">
     </div>
 </template>
+
+<style scoped>
+    #mobile-container {
+        width: 70%;
+        text-align: center;
+    }
+
+    #mobile-container h1 {
+        font-size: 1.2rem;
+        margin: 0px;
+        height: 20%;
+    }
+
+    #mobile-container img {
+        width: 75%;
+        height: 75%;
+    }
+</style>
 
 <style scoped>
     #container {
